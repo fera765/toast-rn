@@ -4,7 +4,7 @@ import {
   IToastMessages,
   styleAnimated,
   styleDirection,
-} from 'rn-toast';
+} from 'toast-rn';
 import {Button, Container} from './styles';
 
 interface IToastButton {

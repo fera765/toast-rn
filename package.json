@@ -1,6 +1,6 @@
 {
-  "name": "rn-toast",
-  "version": "1.0.0",
+  "name": "toast-rn",
+  "version": "1.0.1",
   "scripts": {
     "test": "jest --passWithNoTests",
     "prepare": "tsc",
@@ -39,18 +39,18 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "description": "Create toast messages",
-  "homepage": "https://github.com/fera765/rn-toast#readme",
+  "homepage": "https://github.com/fera765/toast-rn#readme",
   "author": {
     "name": "Mateus Conceição",
     "email": "fera7775@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/fera765/rn-toast",
+    "url": "https://github.com/fera765/toast-rn",
     "email": "fera7775@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fera765/rn-toast.git"
+    "url": "git@github.com:fera765/toast-rn.git"
   },
   "license": "MIT"
 }
