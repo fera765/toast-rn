@@ -93,6 +93,8 @@ npx react-native react-native-vector-icons
 
   //home.tsx
   import React from 'react';
+  import { View, Text } from 'react-native';
+
   import { useToast, IToastMessages } from 'toast-rn';
 
   //A type is available for use with typescript (IToastMessages)
@@ -119,6 +121,7 @@ npx react-native react-native-vector-icons
     return (
       <View>
         <Text>
+          React Native Toast Message
         </Text>
       </View>
     )
