@@ -38,7 +38,7 @@
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/fera765/toast-rn/main/demo/exemplo.gif" />
+<img src="https://raw.githubusercontent.com/fera765/toast-rn/main/demo/exemplo2.0.gif" />
 </p>
 
 <br>
