@@ -1,7 +1,7 @@
 import React from 'react';
-import { Animated, Easing, useWindowDimensions } from 'react-native';
+import {Animated, Easing, useWindowDimensions} from 'react-native';
 import Toast from './Toast';
-import { Container } from './styles';
+import {Container} from './styles';
 
 export type styleAnimated = 'bounce' | 'linear' | 'circle' | 'step0' | 'step1';
 
@@ -16,8 +16,22 @@ export interface IToastMessages {
   title: string;
   description?: string;
   listDescriptions?: String[];
+  /**
+   * How long the message will stay on the screen
+   *
+   *Example 6 equal to 6 seconds
+   */
   duration?: number;
+  isBorder?: boolean;
   animate: Animated.Value;
+  /** Enable duration line */
+  visibleLine?: boolean;
+  /**
+   * Add color to visibleLine
+   *
+   * By default lineAnimation is ['#1f1f1f', '#ccc']
+   */
+  lineAnimation?: [string, string];
 }
 
 interface ToastContainerProps {
@@ -32,14 +46,13 @@ export const animationsStyled = {
   step1: Easing.step1,
 };
 
-const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
-  const { width, height } = useWindowDimensions();
+const ToastContainer: React.FC<ToastContainerProps> = ({messages}) => {
+  const {width, height} = useWindowDimensions();
 
   return (
     <Container>
       {messages.map(item => {
-        const { animate, direction, styleAnimation } = item;
-
+        const {animate, direction, styleAnimation} = item;
         Animated.timing(animate, {
           toValue: 1,
           duration: 1500,

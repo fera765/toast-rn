@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import { IToastMessages } from '..';
-import { useToast } from '../../..';
+import {Animated} from 'react-native';
+import {IToastMessages} from '..';
+import {useToast} from '../../..';
 import {
   Container,
   BoxMessage,
@@ -25,26 +26,46 @@ const Icons = {
   success: <Icon name="check-circle" size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ message, style }) => {
-  const { removeToast } = useToast();
+const Toast: React.FC<ToastProps> = ({message, style}) => {
+  const [animation] = useState(new Animated.Value(0));
+
+  const {removeToast} = useToast();
   const listDesctiption = message.listDescriptions;
+  const visibleLine = message.visibleLine ?? true;
+  const lineAnimation = message.lineAnimation ?? ['#1f1f1f', '#ccc'];
+  const isBorder = message.isBorder ?? true;
 
   useEffect(() => {
-    const timer = setTimeout(
-      () => {
-        removeToast(message.id);
-      },
-      listDesctiption ? 24000 : message.duration ?? 6000,
-    );
+    Animated.timing(animation, {
+      toValue: 100,
+      duration: (message.duration ?? 6000) + 500,
+      useNativeDriver: false,
+    }).start();
+  }, [animation, message.duration]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      removeToast(message.id);
+    }, message.duration ?? 6000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [removeToast, listDesctiption, message.duration, message.id]);
+  }, [removeToast, message.duration, message.id]);
 
   const handleRemoveToast = useCallback(() => {
     removeToast(message.id);
   }, [removeToast, message.id]);
+
+  const interṕolatedValue = animation.interpolate({
+    inputRange: [0, 100],
+    outputRange: lineAnimation,
+  });
+
+  const interṕolatedValueWidth = animation.interpolate({
+    inputRange: [0, 100],
+    outputRange: ['96%', '0%'],
+  });
 
   return (
     <AnimatedPage style={style}>
@@ -52,8 +73,8 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
         type={message.type}
         hasDescription={!!message.description}
         onPress={handleRemoveToast}
-        activeOpacity={1}
-      >
+        isBorder={isBorder}
+        activeOpacity={1}>
         <BoxMessage>
           <BoxInfo>
             {Icons[message.type || 'info']}
@@ -76,6 +97,19 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
           ))}
         </BoxInfoListMesages>
       </Container>
+      {visibleLine && (
+        <Animated.View
+          style={{
+            top: -14,
+            left: 17,
+            borderBottomLeftRadius: isBorder ? 10 : 0,
+            borderBottomRightRadius: isBorder ? 10 : 0,
+            width: interṕolatedValueWidth,
+            height: 6,
+            backgroundColor: interṕolatedValue,
+          }}
+        />
+      )}
     </AnimatedPage>
   );
 };

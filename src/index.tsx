@@ -31,6 +31,7 @@ const ToastProvider: React.FC = ({ children }) => {
       const newMessage = Object.assign(message, {
         ...message,
         id: uuidv4(),
+        duration: (message.duration ?? 6) * 1000,
         animate: new Animated.Value(0),
       });
       setMessages(prevMessages => [...prevMessages, newMessage]);

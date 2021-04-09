@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native';
 import {
   useToast,
   IToastMessages,
@@ -17,21 +18,33 @@ const messages = [
     title: 'Success in registering',
     description: 'Ready now and just access your profile',
     type: 'success',
+    duration: 6,
+    isBorder: false,
+    lineAnimation: ['#D404D6', '#D46DD6'],
   },
   {
     title: 'Error when registering',
     description: 'Try again later',
     type: 'error',
+    duration: 3,
+    isBorder: true,
+    lineAnimation: ['#D60405', '#fff'],
   },
   {
     title: 'You can not do that',
     description: 'You are not allowed to perform this action',
     type: 'info',
+    duration: 8,
+    isBorder: true,
+    lineAnimation: ['#000', '#fff'],
   },
   {
     title: 'Something wrong',
     description: 'Are you sure everything is right?',
     type: 'warning',
+    duration: 10,
+    isBorder: false,
+    lineAnimation: ['#F72905', '#fff'],
   },
   {
     title: 'You need to fill in all the fields',
@@ -40,6 +53,9 @@ const messages = [
       'Empty password field',
       'Empty name field',
     ],
+    duration: 27,
+    isBorder: true,
+    lineAnimation: ['#2E077E', '#fff'],
     type: 'error',
   },
 ];
@@ -53,8 +69,8 @@ const Home: React.FC = () => {
     const message = {
       ...messages[greeting_id],
       direction: direction ?? 'right',
+      // isBorder: false,
       styleAnimation: effect ?? 'bounce',
-      duration: 6000,
     } as IToastMessages;
 
     addToast(message);
@@ -62,20 +78,34 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <Button onPress={() => handleAddToast({effect: 'bounce'})}>Bounce</Button>
-      <Button onPress={() => handleAddToast({effect: 'circle'})}>Circle</Button>
-      <Button onPress={() => handleAddToast({effect: 'linear'})}>Linear</Button>
-      <Button onPress={() => handleAddToast({effect: 'step0'})}>Step0</Button>
-      <Button onPress={() => handleAddToast({effect: 'step1'})}>Step1</Button>
+      <Button onPress={() => handleAddToast({effect: 'bounce'})}>
+        <Text>Bounce</Text>
+      </Button>
+      <Button onPress={() => handleAddToast({effect: 'circle'})}>
+        <Text>Circle</Text>
+      </Button>
+      <Button onPress={() => handleAddToast({effect: 'linear'})}>
+        <Text>Linear</Text>
+      </Button>
+      <Button onPress={() => handleAddToast({effect: 'step0'})}>
+        <Text>Step0</Text>
+      </Button>
+      <Button onPress={() => handleAddToast({effect: 'step1'})}>
+        <Text>Step1</Text>
+      </Button>
 
       <Button onPress={() => handleAddToast({direction: 'bottom'})}>
-        Bottom
+        <Text>Bottom</Text>
       </Button>
-      <Button onPress={() => handleAddToast({direction: 'left'})}>Left</Button>
+      <Button onPress={() => handleAddToast({direction: 'left'})}>
+        <Text>Left</Text>
+      </Button>
       <Button onPress={() => handleAddToast({direction: 'right'})}>
-        Right
+        <Text> Right</Text>
       </Button>
-      <Button onPress={() => handleAddToast({direction: 'top'})}>Top</Button>
+      <Button onPress={() => handleAddToast({direction: 'top'})}>
+        <Text>Top</Text>
+      </Button>
     </Container>
   );
 };

@@ -1,9 +1,10 @@
 import styled from 'rn-css';
-import { Animated } from 'react-native';
+import {Animated} from 'react-native';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info' | 'warning';
   hasDescription: boolean;
+  isBorder?: boolean;
 }
 
 const toastTypeVariation = {
@@ -33,7 +34,7 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  border-radius: 10px;
+  border-radius: ${p => (p.isBorder ? '10px' : '0px')};
 
   ${props => toastTypeVariation[props.type || 'info']}
 `;

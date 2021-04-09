@@ -24,13 +24,16 @@
 
 <hr> -->
 
+
+
 <p align="center">
-  <a href="#wrenchs-funcionalidades">Installation</a> &#xa0; | &#xa0;
-  <a href="#sparkles-funcionalidades">Functionalities</a> &#xa0; | &#xa0;
-  <a href="#rocket-tecnologias">Technology</a> &#xa0; | &#xa0;
-  <a href="#star-example">Example</a> &#xa0; | &#xa0;
+  <a href="#wrench-installation">Installation</a> &#xa0; | &#xa0;
+  <a href="#sparkles-functionalities">Functionalities</a> &#xa0; | &#xa0;
+  <a href="#blush-simple-documentation">Documentation</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="#rocket-technology">Technology</a> &#xa0; | &#xa0;
   <a href="https://github.com/fera765" target="_blank">Autor</a>
-  <a href="#star-example">Example</a> &#xa0; | &#xa0;
+  &#xa0; | &#xa0;
   <a href="https://github.com/fera765/toast-rn/exemple" target="_blank">Demo</a>
 </p>
 
@@ -73,6 +76,41 @@ npx react-native react-native-vector-icons
 
 :heavy_check_mark: Creating toast messages.
 
+## :blush: Simple documentation ##
+
+```ts
+
+//By default visibleLine is true
+visibleLine?: boolean = Enable duration line
+
+//By default lineAnimation is ['#1f1f1f', '#ccc']
+lineAnimation?: string[]; = Add color to visibleLine
+
+//By default isBorder is true
+isBorder?: boolean = Add or remove rounded corners
+
+//By default type is 'info'
+type?: string = Accepted > 'success' | 'error' | 'info' | 'warning';
+
+//By default direction is 'right'
+direction?: string = Accepted > 'left' | 'right' | 'top' | 'bottom';
+
+//By default styleAnimation is 'bounce'
+styleAnimation?: string = Accepted > 'bounce' | 'linear' | 'circle' | 'step0' | 'step1';
+
+//Required to submit a title
+title: string = The title of the toast;
+
+description?: string = The description of toast;
+
+//When using this field, the description field will not appear
+listDescriptions?: String[] = Accepts a 'string' list;
+
+//How long the message will stay on the screen
+duration?: number = Accepts Type number;
+
+```
+
 ## :star: Example ##
 
 ```javascript
@@ -112,9 +150,10 @@ npx react-native react-native-vector-icons
         //   'Empty password field',
         //   'Empty name field',
         // ],
+        lineAnimation: ['#000', '#fff'],
         direction: 'right',
         styleAnimation: 'bounce',
-        duration: 6000,
+        duration: 6, // 6 seconds
         type: 'success',
       });
     }
@@ -140,7 +179,7 @@ The following tools were used in the construction of the project:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vector Icons](https://www.npmjs.com/package/react-native-vector-icons/)
 
-## :memo: Licença ##
+## :memo: License ##
 
 
 This project is under MIT license. See the archive [LICENSE](LICENSE.md) for more details.
